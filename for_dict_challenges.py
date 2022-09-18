@@ -59,20 +59,15 @@ top_name_among_school_classes = []
 school_students_class = []
 
 
-# счетчик кол-ва повторений имени в списке
 def count_frequency_name_school_students(school_students_data):
     for class_student in school_students_data:
         school_students_class = class_student
 
-        # список высокочастотных имен в разрезе одного класса исх-го списка
         top_name_among_school_class = count_frequency_name(data_list=school_students_class)
 
-        # список имен высокочастотных имен в разрезе классов исх-го списка
         top_name_among_school_classes.append(get_higest_frequency_name(data_frequency_name=top_name_among_school_class))
     print(f'higest name among top name: {top_name_among_school_classes}')
 
 
 count_frequency_name_school_students(school_students_data=school_students)
 
-# the programm working with err:
-# first top name not added to the list of results <top_name_among_school_classes>
