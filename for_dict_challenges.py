@@ -9,11 +9,10 @@ students = [
 ]
 
 key = 'first_name'
-# name_students = []
-# frequency_name = []
+name_students = []
+frequency_name = []
 
 
-# счетчик кол-ва повторений имени в списке
 def count_frequency_name(data_list):
     students_name = [student.get(key) for student in data_list]
     frequency_name = collections.Counter(students_name).most_common()
@@ -33,7 +32,7 @@ def get_higest_frequency_name(data_frequency_name):
     return higest_frequency_name
 
 
-# get_higest_frequency_name(data_frequency_name=count_frequency_name(data_list=students))
+get_higest_frequency_name(data_frequency_name=count_frequency_name(data_list=students))
 
 
 school_students = [
@@ -70,4 +69,53 @@ def count_frequency_name_school_students(school_students_data):
 
 
 count_frequency_name_school_students(school_students_data=school_students)
+
+
+symbol_class = 'class'
+type_entity = 'students'
+person_attribute = 'first_name'
+
+
+school = [
+    {'class': '2a', 'students': [{'first_name': 'Маша'}, {'first_name': 'Оля'}]},
+    {'class': '2б', 'students': [{'first_name': 'Олег'}, {'first_name': 'Миша'}]},
+    {'class': '2в', 'students': [{'first_name': 'Даша'}, {'first_name': 'Олег'}, {'first_name': 'Маша'}]},
+]
+
+is_male = {
+    'Олег': True,
+    'Маша': False,
+    'Оля': False,
+    'Миша': True,
+    'Даша': False,
+}
+
+title_classes = [title_class.get(symbol_class) for title_class in school]
+
+
+def count_gender_in_class(database_school):
+    persons_name = []
+    schooller_classes = [class_student.get(type_entity) for class_student in database_school]
+
+    for class_schooler in schooller_classes:
+        name_schooler_in_class = [person for person in class_schooler]
+        persons_name_class = [name.get(person_attribute) for name in name_schooler_in_class]
+        persons_name.append(persons_name_class)
+    return persons_name
+
+
+def check_person_gender(students_in_class=count_gender_in_class(school)):
+    count_male = 0
+    for one_class in students_in_class:
+        male_persons = [is_male[person] for person in one_class]
+        for male in male_persons:
+            if male == True:
+                count_male += 1
+            all_students_class = len(male_persons)
+        count_female = all_students_class - count_male
+        print(f'мальчиков - {count_male}\nдевочек - {count_female}\n')
+
+
+check_person_gender(students_in_class=count_gender_in_class(database_school=school))
+
 
